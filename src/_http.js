@@ -1,6 +1,6 @@
 'use strict'
 
-var APIVersion = '3'
+var APIVersion = '4'
 
 var btoa = require('btoa-lite')
 var parse = require('url-parse')
@@ -40,7 +40,7 @@ function HttpClient(options) {
  * Returns last seen transaction time.
  * @returns {number} The last seen transaction time.
  */
-HttpClient.prototype.getLastTxnTime = function() {
+HttpClient.prototype.getLastTxnTime = function () {
   return this._lastSeen
 }
 
@@ -50,7 +50,7 @@ HttpClient.prototype.getLastTxnTime = function() {
  *
  * @param {number} A transaction timestamp.
  */
-HttpClient.prototype.syncLastTxnTime = function(time) {
+HttpClient.prototype.syncLastTxnTime = function (time) {
   if (this._lastSeen == null || this._lastSeen < time) {
     this._lastSeen = time
   }
@@ -71,7 +71,7 @@ HttpClient.prototype.syncLastTxnTime = function(time) {
  *
  * @returns {Promise} The response promise.
  */
-HttpClient.prototype.execute = function(method, path, body, query, options) {
+HttpClient.prototype.execute = function (method, path, body, query, options) {
   var url = parse(this._baseUrl)
   url.set('pathname', path)
   url.set('query', query)
@@ -162,7 +162,7 @@ function resolveFetch(fetchOverride, preferPolyfill) {
   }
 
   if (delegate !== null) {
-    var fetch = function() {
+    var fetch = function () {
       // NB. Rebinding to global is needed for Safari.
       return delegate.apply(global, arguments)
     }
